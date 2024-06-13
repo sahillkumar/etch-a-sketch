@@ -10,7 +10,7 @@ body {
   background-color: #f0e0db;
   padding: 4%;
   box-sizing: border-box;
-  gap: 2%;
+  gap: 4%;
 }
 
 .sidePanel {
@@ -19,26 +19,17 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   gap: 4%;
-  padding: 16px 0 16px 16px;
-}
-
-.sidePanel > * {
+  padding: 16px;
+  border: 1px solid red;
 }
 
 .header {
-  border: 1px solid royalblue;
   flex-basis: 100px;
   margin: 0;
-}
-
-.inputWrapper {
-  border: 1px solid green;
-  flex: 1;
-}
-
-.modeSelector {
-  border: 1px solid brown;
-  flex: 1;
+  font-family: "Pacifico", cursive;
+  font-size: 48px;
+  text-align: center;
+  color: #333;
 }
 
 .sketchContainer {
@@ -51,10 +42,11 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREoRGyXmHy_6aIgXYqWHdOT3KjfmnuSyxypw&s");
+  box-shadow: rgba(99, 99, 99, 0.2) 0 4px 8px 0;
+  background: url("https://images.indianexpress.com/2022/03/Skincare-Pexels-3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: url("./cursor.png"), auto;
 }
 
 .row {
@@ -63,7 +55,42 @@ body {
 }
 
 .col {
-  border-right: 0.1px solid #ddd;
-  border-bottom: 0.1px solid #ddd;
   flex: 1;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 12px;
+  margin-bottom: 8px;
+}
+
+.input label {
+  min-width: 15%;
+  font-size: 20px;
+}
+
+.input input {
+  min-width: calc(85% - 28px);
+  cursor: pointer;
+}
+
+.modeSelector {
+  font-size: 18px;
+  min-width: calc(85% - 28px);
+  cursor: pointer;
+  padding: 8px;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button {
+  padding: 12px;
+  font-size: 20px;
+  min-width: calc(85% - 28px);
 }

@@ -5,13 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
       <div class="sidePanel">
         <h1 class="header">Etch a Sketch</h1>
-        <div class="inputWrapper">Input</div>
-        <div class="modeSelector">Mode</div>
+        <div class="inputWrapper">
+          <div class="input">
+            <label for="rows">Rows</label>
+            <input type="range" min="1" max="50" value="16" /><br />
+          </div>
+          <div class="input">
+            <label for="cols">Cols</label>
+            <input type="range" min="1" max="50" value="16" /><br />
+          </div>
+          <div class="input">
+            <label for="modeSelector">Mode</label>
+            <select class="modeSelector" name="modeSelector">
+              <option value="color">Color</option>
+              <option value="rainbow">Rainbow</option>
+              <option value="eraser">Eraser</option>
+            </select>
+          </div>
+        </div>
+        <div class="btnWrapper">
+          <button class="shuffleBtn">Shuffle Background</button>
+          <button class="resetBtn">Reset Canvas</button>
+        </div>
       </div>
       <div class="sketchContainer"></div>
     </div>
