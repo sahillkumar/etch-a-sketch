@@ -1,17 +1,49 @@
-let rows = 50;
-let cols = 50;
+let rows = 5;
+let cols = 5;
+let imgIndex = 0;
 
 const sketchContainer = document.querySelector(".sketchContainer");
-const shuffleBtn = document.querySelector(".shuffleBtn");
 const sketch = document.createElement("div");
+const rowSelector = document.querySelector("#rows");
+const colSelector = document.querySelector("#cols");
+const modeSelector = document.querySelector("#modeSelector");
+const currentColor = document.querySelector("#currentColor");
+const shuffleBtn = document.querySelector(".shuffleBtn");
+const resetBtn = document.querySelector(".resetBtn");
+const shuffleAndResetBtn = document.querySelector(".shuffleAndResetBtn");
 
-shuffleBtn.addEventListener("click", (e) => {
-  const index = Math.floor(Math.random() * photos.length);
-  sketch.style.backgroundImage = `url(${photos[index]})`;
+rowSelector.onchange = (e) => {
+  rows = e.target.value;
+  createGrid(rows, cols);
+};
+
+colSelector.onchange = (e) => {
+  cols = e.target.value;
+  createGrid(rows, cols);
+};
+
+const shuffleImg = () => {
+  imgIndex = imgIndex === photos.length - 1 ? 0 : (imgIndex += 1);
+  sketch.style.backgroundImage = `url(${photos[imgIndex]})`;
+};
+
+shuffleBtn.addEventListener("click", shuffleImg);
+
+resetBtn.addEventListener("click", (e) => {
+  createGrid(rows, cols);
+});
+
+shuffleAndResetBtn.addEventListener("click", (e) => {
+  shuffleImg();
+  createGrid(rows, cols);
 });
 
 function createGrid() {
   sketch.classList.add("sketch");
+
+  while (sketch.firstChild) {
+    sketch.firstChild.remove();
+  }
 
   for (let i = 0; i < rows; i++) {
     const row = document.createElement("div");
@@ -32,7 +64,10 @@ const changeColor = (e) => {
   e.target.style.backgroundColor = "white";
 };
 
-window.onload = () => createGrid();
+window.onload = () => {
+  createGrid(rows, cols);
+  sketch.style.backgroundImage = `url(${photos[imgIndex]})`;
+};
 
 const photos = [
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaeUHfGpWLPe6qoloDdkEIMTukNh0YH6FqNw&s",

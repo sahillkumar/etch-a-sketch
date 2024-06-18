@@ -11,6 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -19,24 +23,34 @@
         <div class="inputWrapper">
           <div class="input">
             <label for="rows">Rows</label>
-            <input type="range" min="1" max="50" value="16" /><br />
+            <input type="range" min="1" max="50" value="16" id="rows" />
           </div>
           <div class="input">
-            <label for="cols">Cols</label>
-            <input type="range" min="1" max="50" value="16" /><br />
+            <label for="cols">Columns</label>
+            <input type="range" min="1" max="50" value="16" id="cols" />
           </div>
           <div class="input">
-            <label for="modeSelector">Mode</label>
-            <select class="modeSelector" name="modeSelector">
-              <option value="color">Color</option>
-              <option value="rainbow">Rainbow</option>
-              <option value="eraser">Eraser</option>
-            </select>
+            <label>Mode</label>
+            <div class="radioGroup">
+              <div>
+                <input type="radio" id="solid" name="mode" value="solid" />
+                <label for="solid">Solid</label>
+              </div>
+              <div>
+                <input type="radio" id="rainbow" name="mode" value="rainbow" />
+                <label for="rainbow">Rainbow</label>
+              </div>
+            </div>
+          </div>
+          <div class="input">
+            <label for="currentColor">Color</label>
+            <input type="color" name="currentColor" id="currentColor" />
           </div>
         </div>
         <div class="btnWrapper">
-          <button class="shuffleBtn">Shuffle Background</button>
+          <button class="shuffleBtn">Shuffle Image</button>
           <button class="resetBtn">Reset Canvas</button>
+          <button class="shuffleAndResetBtn">Shuffle & Reset</button>
         </div>
       </div>
       <div class="sketchContainer"></div>
