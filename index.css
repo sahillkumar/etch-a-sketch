@@ -42,7 +42,6 @@ body {
   flex-direction: column;
   background-repeat: no-repeat;
   background-size: cover;
-  cursor: url("./cursor.png"), auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0 4px 8px 0;
 }
 
@@ -70,20 +69,6 @@ body {
 .input > input {
   min-width: calc(75% - 28px);
   cursor: pointer;
-}
-
-/* Track: webkit browsers */
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 15px;
-  background: #107895;
-  border-radius: 16px;
-}
-
-/* Track: Mozilla Firefox */
-input[type="range"]::-moz-range-track {
-  height: 15px;
-  background: #ccc;
-  border-radius: 16px;
 }
 
 input[type="color"] {
@@ -115,6 +100,10 @@ input[type="radio"] {
   margin-right: 4px;
 }
 
+input[type="range"] {
+  min-width: calc(75% - 48px);
+}
+
 button {
   padding: 16px;
   font-size: 18px;
@@ -129,4 +118,9 @@ button {
   margin-bottom: 12px;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
+}
+
+.disabled {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
 }

@@ -24,16 +24,19 @@
           <div class="input">
             <label for="rows">Rows</label>
             <input type="range" min="1" max="50" value="16" id="rows" />
+            <span id="rowCount"></span>
           </div>
           <div class="input">
             <label for="cols">Columns</label>
             <input type="range" min="1" max="50" value="16" id="cols" />
+            <span id="colCount"></span>
           </div>
           <div class="input">
             <label>Mode</label>
             <div class="radioGroup">
               <div>
-                <input type="radio" id="solid" name="mode" value="solid" />
+                <input type="radio" id="solid" name="mode" value="solid"
+                checked=/>
                 <label for="solid">Solid</label>
               </div>
               <div>
