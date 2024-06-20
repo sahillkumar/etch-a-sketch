@@ -3,27 +3,64 @@ let cols;
 let imgIndex = 0;
 let mode = "solid";
 let shade;
+const SLIDER_MAX_VALUE = 50;
 
+// canvas elements
 const sketchContainer = document.querySelector(".sketchContainer");
 const sketch = document.createElement("div");
+
+// inputs
 const rowSelector = document.querySelector("#rows");
 const colSelector = document.querySelector("#cols");
-const currentColor = document.querySelector("#currentColor");
-const shuffleBtn = document.querySelector(".shuffleBtn");
-const resetBtn = document.querySelector(".resetBtn");
-const shuffleAndResetBtn = document.querySelector(".shuffleAndResetBtn");
+const colorPicker = document.querySelector("#colorPicker");
 const radioGroup = document.querySelector(".radioGroup");
 const solidMode = document.getElementById("solid");
 const rowCount = document.getElementById("rowCount");
 const colCount = document.getElementById("colCount");
 
-const afterEffects = (mode) => {
-  const disabled = mode === "rainbow" ? true : false;
-  currentColor.disabled = disabled;
-  currentColor.classList.toggle("disabled");
+// buttons
+const shuffleBtn = document.querySelector(".shuffleBtn");
+const resetBtn = document.querySelector(".resetBtn");
+const shuffleAndResetBtn = document.querySelector(".shuffleAndResetBtn");
+
+// onload event
+window.onload = () => {
+  sketch.style.backgroundImage = `url(${photos[imgIndex]})`;
+  solidMode.checked = true;
+  shade = colorPicker.value;
+  rows = rowSelector.value;
+  cols = colSelector.value;
+  colCount.textContent = cols;
+  rowCount.textContent = rows;
+  createGrid(rows, cols);
+  setSliderBackground(rowSelector, rows);
+  setSliderBackground(colSelector, cols);
 };
 
-currentColor.addEventListener("change", (e) => {
+// event listeners
+rowSelector.addEventListener("input", ({ target: { value } }) => {
+  rowCount.textContent = value;
+  setSliderBackground(rowSelector, value);
+});
+
+// handling creation of grid on change event for performance
+rowSelector.addEventListener("change", ({ target: { value } }) => {
+  rows = value;
+  createGrid(rows, cols);
+});
+
+colSelector.addEventListener("input", ({ target: { value } }) => {
+  colCount.textContent = value;
+  setSliderBackground(colSelector, value);
+});
+
+// handling creation of grid on change event for performance
+colSelector.addEventListener("change", ({ target: { value } }) => {
+  cols = value;
+  createGrid(rows, cols);
+});
+
+colorPicker.addEventListener("change", (e) => {
   shade = e.target.value;
 });
 
@@ -32,23 +69,6 @@ radioGroup.onclick = (e) => {
     mode = e.target.value;
     afterEffects(mode);
   }
-};
-
-rowSelector.onchange = (e) => {
-  rows = e.target.value;
-  rowCount.textContent = rows;
-  createGrid(rows, cols);
-};
-
-colSelector.onchange = (e) => {
-  cols = e.target.value;
-  colCount.textContent = cols;
-  createGrid(rows, cols);
-};
-
-const shuffleImg = () => {
-  imgIndex = imgIndex === photos.length - 1 ? 0 : (imgIndex += 1);
-  sketch.style.backgroundImage = `url(${photos[imgIndex]})`;
 };
 
 shuffleBtn.addEventListener("click", shuffleImg);
@@ -61,6 +81,18 @@ shuffleAndResetBtn.addEventListener("click", (e) => {
   shuffleImg();
   createGrid(rows, cols);
 });
+
+// Helper functions
+const afterEffects = (mode) => {
+  const disabled = mode === "rainbow" ? true : false;
+  colorPicker.disabled = disabled;
+  colorPicker.classList.toggle("disabled");
+};
+
+function shuffleImg() {
+  imgIndex = imgIndex === photos.length - 1 ? 0 : (imgIndex += 1);
+  sketch.style.backgroundImage = `url(${photos[imgIndex]})`;
+}
 
 function createGrid() {
   sketch.classList.add("sketch");
@@ -98,16 +130,13 @@ const changeColor = (e) => {
   e.target.style.backgroundColor = currShade;
 };
 
-window.onload = () => {
-  sketch.style.backgroundImage = `url(${photos[imgIndex]})`;
-  solidMode.checked = true;
-  shade = currentColor.value;
+const setSliderBackground = (targetElement, value) => {
+  targetElement.style.background = getSliderActiveBgColor(value);
+};
 
-  rows = rowSelector.value;
-  cols = colSelector.value;
-  colCount.textContent = cols;
-  rowCount.textContent = rows;
-  createGrid(rows, cols);
+const getSliderActiveBgColor = (value) => {
+  const progress = (value / SLIDER_MAX_VALUE) * 100;
+  return `linear-gradient(to right, #107895 ${progress}%, #ccc ${progress}%)`;
 };
 
 const photos = [

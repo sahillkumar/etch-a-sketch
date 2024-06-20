@@ -16,7 +16,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4%;
+  gap: 24px;
   padding: 48px 40px;
   background-color: #f1f3f4;
 }
@@ -58,50 +58,84 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 12px;
+  padding: 16px 0;
+  margin-bottom: 24px;
+  width: 100%;
 }
 
-.input label {
-  min-width: 25%;
+.input > :first-child {
+  width: 100px;
   font-size: 20px;
 }
 
-.input > input {
-  min-width: calc(75% - 28px);
+.input > :nth-child(2) {
+  flex: 1;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 16px;
   cursor: pointer;
+  height: 8px;
+  background: #ccc;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background-color: #107895;
+  border-radius: 50%;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 6px #10789549;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 8px #10789549;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  background-color: #107895;
+  border-radius: 50%;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  box-shadow: 0 0 0 6px #10789549;
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  box-shadow: 0 0 0 8px #10789549;
 }
 
 input[type="color"] {
   padding: 0;
   border: 0;
+  border-radius: 2px;
 }
 
-.btnWrapper,
-.inputWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+input[type="radio"] {
+  width: 24px;
+  margin: 0 8px 0 0;
 }
 
 div.radioGroup {
   display: flex;
   font-size: 18px;
-  min-width: calc(75% - 28px);
-  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .radioGroup > div {
-  flex: 1;
   display: flex;
-}
-
-input[type="radio"] {
-  width: 24px;
-  margin-right: 4px;
-}
-
-input[type="range"] {
-  min-width: calc(75% - 48px);
 }
 
 button {
@@ -115,12 +149,18 @@ button {
   outline: none;
   border-radius: 2px;
   letter-spacing: 1px;
-  margin-bottom: 12px;
+  margin-bottom: 32px;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
+  width: 100%;
 }
 
 .disabled {
-  pointer-events: none !important;
   cursor: not-allowed !important;
+}
+
+.colCount,
+.rowCount {
+  min-width: 24px;
+  text-align: right;
 }
