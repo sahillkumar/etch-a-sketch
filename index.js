@@ -5,6 +5,8 @@ let mode = "solid";
 let shade;
 const SLIDER_MAX_VALUE = 50;
 
+let mouseDown = false;
+
 // canvas elements
 const sketchContainer = document.querySelector(".sketchContainer");
 const sketch = document.createElement("div");
@@ -38,6 +40,20 @@ window.onload = () => {
 };
 
 // event listeners
+sketch.addEventListener("mouseover", (e) => {
+  if (!mouseDown) return;
+  changeColor(e);
+});
+
+sketch.addEventListener("mousedown", (e) => {
+  mouseDown = true;
+  changeColor(e);
+});
+
+sketch.addEventListener("mouseup", () => {
+  mouseDown = false;
+});
+
 rowSelector.addEventListener("input", ({ target: { value } }) => {
   rowCount.textContent = value;
   setSliderBackground(rowSelector, value);
@@ -84,9 +100,10 @@ shuffleAndResetBtn.addEventListener("click", (e) => {
 
 // Helper functions
 const afterEffects = (mode) => {
-  const disabled = mode === "rainbow" ? true : false;
+  const disabled = mode !== "solid" ? true : false;
   colorPicker.disabled = disabled;
-  colorPicker.classList.toggle("disabled");
+  if (disabled) colorPicker.classList.add("disabled");
+  else colorPicker.classList.remove("disabled");
 };
 
 function shuffleImg() {
@@ -112,7 +129,6 @@ function createGrid() {
     sketch.append(row);
   }
 
-  sketch.addEventListener("mouseover", changeColor);
   sketchContainer.appendChild(sketch);
 }
 
@@ -126,7 +142,10 @@ const getRandomColor = () => {
 };
 
 const changeColor = (e) => {
-  const currShade = mode === "rainbow" ? getRandomColor() : shade;
+  e.preventDefault();
+  let currShade = shade;
+  if (mode === "multi") currShade = getRandomColor();
+  else if (mode === "eraser") currShade = "transparent";
   e.target.style.backgroundColor = currShade;
 };
 
@@ -140,7 +159,7 @@ const getSliderActiveBgColor = (value) => {
 };
 
 const photos = [
-  "https://resizing.flixster.com/IqpM_IQdzeGrQuBZNc-W3J0h2s0=/fit-in/705x460/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10399541_i_h9_aa.jpg",
+  "https://mrwallpaper.com/images/high/windows-landscape-rick-and-morty-pc-4k-6x8r1d99u3xfgvxg.jpg",
   "https://www.desktopbackground.org/p/2011/03/02/165718_zootopia-wallpaper-movies-animation-zootopia-best-animation_4767x3300_h.jpg",
   "https://i.pinimg.com/736x/68/f1/71/68f171a7671807151e8c7615043e4e57.jpg",
   "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2018/09/931/524/1c1efe99-the-simpsons-660-ap.jpg?ve=1&tl=1",
