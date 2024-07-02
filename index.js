@@ -160,7 +160,7 @@ const getSliderActiveBgColor = (value) => {
 
 const photos = [
   "https://mrwallpaper.com/images/high/windows-landscape-rick-and-morty-pc-4k-6x8r1d99u3xfgvxg.jpg",
-  "https://www.desktopbackground.org/p/2011/03/02/165718_zootopia-wallpaper-movies-animation-zootopia-best-animation_4767x3300_h.jpg",
+  "https://mrwallpaper.com/images/high/light-yagami-in-the-anime-series-death-note-a91b4tix2nkz8pfw.jpg",
   "https://i.pinimg.com/736x/68/f1/71/68f171a7671807151e8c7615043e4e57.jpg",
   "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2018/09/931/524/1c1efe99-the-simpsons-660-ap.jpg?ve=1&tl=1",
   "https://static1.srcdn.com/wordpress/wp-content/uploads/2016/12/Scooby-Doo-and-the-Mystery-Gang.jpg",
