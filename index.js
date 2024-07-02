@@ -50,7 +50,7 @@ sketch.addEventListener("mousedown", (e) => {
   changeColor(e);
 });
 
-sketch.addEventListener("mouseup", () => {
+document.body.addEventListener("mouseup", () => {
   mouseDown = false;
 });
 
